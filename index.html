@@ -1,0 +1,62 @@
+<html>
+<script type="text/javascript">
+var computerRandomChar = Math.floor(Math.random() * 26) + 97;
+var wins=0;
+var losses=0;
+var chancesLeft = 11;
+var guessedChars;
+function getChars(e){
+var keynum;
+if(window.event)
+{
+	keynum = e.keyCode;
+}
+document.getElementById("guessedChars").innerHTML =  document.getElementById("guessedChars").innerHTML + ", " + String.fromCharCode(keynum);
+
+if(computerRandomChar == keynum)
+{
+	wins++;
+	document.getElementById("wins").innerHTML = wins.toString();
+	document.getElementById("losses").innerHTML = losses.toString();
+	document.getElementById("chances").innerHTML = "11";
+	document.getElementById("guessedChars").innerHTML = "";
+	chancesLeft=11;
+	guessedChars="";
+}
+else
+{
+	chancesLeft--;
+	document.getElementById("chances").innerHTML = chancesLeft.toString();
+}
+if (chancesLeft == 0)
+{	
+	losses++;
+	document.getElementById("wins").innerHTML = wins.toString();
+	document.getElementById("losses").innerHTML = losses.toString();
+	document.getElementById("chances").innerHTML = "11";
+	document.getElementById("guessedChars").innerHTML = "";
+	chancesLeft=11;
+	guessedChars="";
+	
+}
+
+}
+</script>
+<body onkeypress="return getChars(event);">
+	<div>
+	Wins=<label id="wins" name="wins">0</label>
+	</div>
+	</br>
+	<div>
+	Losses=<label id="losses" name="losses" >0</label>
+	</div>
+	</br>
+	<div>
+	Chances Left=<label id="chances" name="chances">11</label>
+	</div>
+	</br>
+	<div>
+	Guess a character=<label id="guessedChars" name="guessedChars" />
+	</div>
+</body>
+</html>
